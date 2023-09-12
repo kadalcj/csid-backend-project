@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Model
+model Delivery {
+  id                String @id @default(cuid())
+  startTime         DateTime
+  finishTime        DateTime
+  plannedStartTime  DateTime
+  deliveryName      String
+  stops             Stop[]
+  matrix            Matrix[]
+
+  @@unique([deliveryName])
+}
+
+model Stop {
+  id                String @id @default(cuid())
+  number            Int
+  name              String
+  address           String
+  stopIndex         Int
+  stopStartTime     DateTime
+  stopEndTime       DateTime
+  unloadingTime     Int
+
+  delivery          Delivery @relation(fields: [deliveryId], references: [id])
+  deliveryId        String
+
+  @@unique([number, name])
+}
+
+model Matrix {
+  id                String @id @default(cuid())
+  fromStop          String
+  toStop            String
+  length            Int
+  duration          Int
+
+  delivery Delivery @relation(fields: [deliveryId], references: [id])
+  deliveryId String
+
+  @@unique([fromStop, toStop])
+}
