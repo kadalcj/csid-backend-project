@@ -1,17 +1,29 @@
 import express from 'express'
 import dotenv from 'dotenv'
-// import { PrismaClient } from '@prisma/client'
+
+/**Routes */
+import deliveryRoute from './src/routes/delivery.route.js'
+import stopRoute from './src/routes/stop.route.js'
+import matrixRoute from './src/routes/matrix.route.js'
 
 const app = express()
-// const prisma = new PrismaClient()
 
+app.use(express.json())
 dotenv.config()
+
 const port = process.env.PORT
 
 /**Root Route */
 app.get('/', (_, res) => {
     res.send('Root')
 })
+
+/**Delivery */
+app.use('/delivery', deliveryRoute)
+/**Stop */
+app.use('/stop', stopRoute)
+/**Matrix */
+app.use('/matrix', matrixRoute)
 
 /**Listen on port */
 app.listen(port, () => {
