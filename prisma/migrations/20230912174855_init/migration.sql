@@ -4,7 +4,7 @@ CREATE TABLE "Delivery" (
     "startTime" TIMESTAMP(3) NOT NULL,
     "finishTime" TIMESTAMP(3) NOT NULL,
     "plannedStartTime" TIMESTAMP(3) NOT NULL,
-    "deliveryName" TEXT NOT NULL,
+    "deliveryNumber" TEXT NOT NULL,
 
     CONSTRAINT "Delivery_pkey" PRIMARY KEY ("id")
 );
@@ -37,7 +37,7 @@ CREATE TABLE "Matrix" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Delivery_deliveryName_key" ON "Delivery"("deliveryName");
+CREATE UNIQUE INDEX "Delivery_deliveryNumber_key" ON "Delivery"("deliveryNumber");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Stop_number_name_key" ON "Stop"("number", "name");

@@ -9,3 +9,18 @@ services:
       POSTGRES_PASSWORD: kadalcj
     ports:
       - "6543:5432"
+    networks:
+      - csid-net
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pg-admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: local@local.com
+      PGADMIN_DEFAULT_PASSWORD: local
+    ports:
+      - "5050:80"
+    networks:
+      - csid-net
+networks:
+  csid-net:
+    driver: bridge

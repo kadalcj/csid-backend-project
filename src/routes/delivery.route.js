@@ -27,11 +27,11 @@ router.get('/', async (_, res) => {
 })
 
 /** Get Delivery by ID */
-router.get('/:id', async (req, res) => {
+router.get('/:deliveryNumber', async (req, res) => {
     try {
         const delivery = await prisma.delivery.findFirst({
             where: {
-                id: req.params.id
+                deliveryNumber: req.params.deliveryNumber
             },
             include: {
                 stops: true,

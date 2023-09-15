@@ -34,7 +34,8 @@ route.post('/', async (req, res) => {
         res.status(201).json({
             'stop': stop
         })
-    } catch (_) {
+    } catch (err) {
+        console.error(err);
         utils.responseError(res)
     }
 })

@@ -16,11 +16,11 @@ model Delivery {
   startTime         DateTime
   finishTime        DateTime
   plannedStartTime  DateTime
-  deliveryName      String
+  deliveryNumber    String
   stops             Stop[]
   matrix            Matrix[]
 
-  @@unique([deliveryName])
+  @@unique([deliveryNumber])
 }
 
 model Stop {
